@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="Majorsilence.Base64/App.axaml" value="Majorsilence.Base64/Majorsilence.Base64.csproj" />
+        <entry key="Majorsilence.Base64/MainWindow.axaml" value="Majorsilence.Base64/Majorsilence.Base64.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

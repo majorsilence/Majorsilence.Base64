@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -26,8 +27,34 @@ namespace Majorsilence.Base64
             TextBoxToEncode.Text= "";
             foreach (var line in TextBoxToDecode.Text.Split(Environment.NewLine))
             {
-                TextBoxToEncode.Text += System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(line)) +
-                                        Environment.NewLine;
+                try
+                {
+                    TextBoxToEncode.Text += System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(line)) +
+                                            Environment.NewLine;
+                }
+                catch
+                {
+                    var convertedContents = new StringBuilder();
+                    foreach (string word in line.Split(' '))
+                    {
+                        if (string.IsNullOrWhiteSpace(word))
+                        {
+                            convertedContents.Append(" ");
+                            continue;
+                        }
+                        try
+                        {
+                            string converted = Encoding.UTF8.GetString(Convert.FromBase64String(word));
+                            convertedContents.AppendLine(converted);
+                        }
+                        catch
+                        {
+                            convertedContents.Append(word);
+                        }
+                    }
+                    
+                    TextBoxToEncode.Text += convertedContents.ToString() + Environment.NewLine;
+                }
             }
         }
     }
